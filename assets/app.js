@@ -13,10 +13,14 @@ import './bootstrap';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
+import Router from './components/router';
 
 function App(){
     return (
-        <p>Yooooooooo !!!</p>
+        <BrowserRouter>
+            <Router/>
+        </BrowserRouter>
     )
 }
 

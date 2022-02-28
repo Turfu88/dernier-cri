@@ -5,3 +5,9 @@ api_platform:
 app:
     path: /
     controller: App\Controller\PublicController
+app1:
+    path: /{slug}
+    controller: App\Controller\PublicController
+app2:
+    path: /{slug}/{id}
+    controller: App\Controller\PublicController
