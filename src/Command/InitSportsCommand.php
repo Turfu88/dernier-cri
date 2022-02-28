@@ -48,11 +48,6 @@ class InitSportsCommand extends Command
     public function importFlux(){
 
         if($this->test)dump("Test mode");
-
-        if(count($this->entityManager->getRepository(Sport::class)->findAll()) >= 0){
-            dump("Flux already imported!");
-            return;
-        }
                      
         // 1 - Get data
         // For tests only : write content in a temporary file for a faster loading
