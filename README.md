@@ -39,21 +39,26 @@ Réaliser une application Headless avec Symfony / Api Platform et un front en Re
 
 
 # Mise en oeuvre du projet :
+Nécessite un serveur PHP pour faire fonctionner l'application. Pour la BDD, on peut utiliser soit mysql, soit sqlite.  
 Dans un terminal, executer:
 1. git clone https://github.com/Turfu88/dernier-cri.git
 2. composer install
 3. yarn install
-4. php bin/console doctrine:database:create
-5. php bin/console doctrine:migrations:migrate
-6. php bin/console import:data   => Commande pour importer les data et les mettre en BDD
-7. yarn dev => pour compiler React
-8. symfony server:start (pour lancer Symfony, qui indiquera le port à ouvrir sur un navigateur)
+5. // Configurer la BDD dans un .env à la racine du projet (fournie dans ce github, à éviter en production) : mysql ou sqlite au choix
+7. DATABASE_URL=mysql://root:root@127.0.0.1:8889/derniercri?serverVersion=5.7 => pour mysql
+8. DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"  => pour sqlite
+9. php bin/console doctrine:database:create
+10. php bin/console doctrine:migrations:migrate  => pour mysql
+11. php bin/console doctrine:schema:create => pour sqlite
+12. php bin/console import:data => Commande pour importer les data et les mettre en BDD
+13. yarn dev => pour compiler React
+14. symfony server:start (pour lancer Symfony, qui indiquera le port à ouvrir sur un navigateur)
 
 # Retours :
 Pas de problème majeur, notamment pour Api Platform et React.  
 J'ai eu quelques difficultés sur 2 points en particulier :  
 * Le parsing de l'api que j'ai choisi. En effet, la data s'est révélée plutôt irrégulière ce qui a nécessité de nettoyer la data avant de l'ajouter en BDD. J'aurai du la tester avant plus en profondeur.
-* La mise en oeuvre sur Netlify. Je n'avais jamais utilisé leur plateforme et j'ai voulu la tester en créant un compte chez eux. J'ai essayé de mettre en ligne le projet mais il doit manquer une chose qui m'échappe. Je regarderai ça dans la semaine.  
+* La mise en oeuvre sur Netlify. Je n'ai jamais utilisé leur plateforme et j'ai voulu la tester en créant un compte chez eux. J'ai essayé de mettre en ligne le projet mais ça n'a pas pu aboutir comme je le voulais. Je dois manquer de recul avec l'utilisation de cette plateforme.  
 
 En chemin, j'ai aussi voulu inclure un service pour alléger le fichier contenant la commande d'importation du flux. La création d'un service a pris du temps et j'ai fini par l'enlever.
 
